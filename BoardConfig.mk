@@ -29,5 +29,27 @@ include device/samsung/jf-common/BoardConfigCommon.mk
 # Assert
 TARGET_OTA_ASSERT_DEVICE := jfltexx,i9505,GT-I9505,jgedlte,i9505g,GT-I9505G,jflte
 
+# Kernel
+# TARGET_KERNEL_CONFIG := lineageos_jf_defconfig
+
+# Bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(COMMON_PATH)/bluetooth
+BOARD_CUSTOM_BT_CONFIG := $(COMMON_PATH)/bluetooth/vnd_jf.txt
+BOARD_BLUETOOTH_USES_HCIATTACH_PROPERTY := false
+BOARD_HAVE_BLUETOOTH_BCM := true
+
+# Wifi module
+BOARD_WLAN_DEVICE := bcmdhd
+BOARD_HAVE_SAMSUNG_WIFI := true
+BOARD_HOSTAPD_DRIVER := NL80211
+BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_${BOARD_WLAN_DEVICE}
+BOARD_WPA_SUPPLICANT_DRIVER := NL80211
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_${BOARD_WLAN_DEVICE}
+WPA_SUPPLICANT_VERSION := VER_0_8_X
+WIFI_BAND := 802_11_ABG
+WIFI_DRIVER_FW_PATH_AP := "/system/etc/wifi/bcmdhd_apsta.bin"
+WIFI_DRIVER_FW_PATH_PARAM := "/sys/module/dhd/parameters/firmware_path"
+WIFI_DRIVER_FW_PATH_STA := "/system/etc/wifi/bcmdhd_sta.bin"
+
 # Properties
 TARGET_SYSTEM_PROP += device/samsung/jfltexx/system.prop

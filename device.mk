@@ -20,5 +20,23 @@ $(call inherit-product-if-exists, vendor/samsung/jf-gsm-common/jf-gsm-common-ven
 ## device overlays
 DEVICE_PACKAGE_OVERLAYS += device/samsung/jfltexx/overlay
 
+# Audio configuration
+PRODUCT_COPY_FILES += \
+    device/samsung/jf-common/audio/audio_platform_info.xml:system/etc/audio_platform_info.xml \
+    device/samsung/jf-common/audio/mixer_paths.xml:system/etc/mixer_paths.xml
+
+# Bluetooth
+PRODUCT_COPY_FILES += \
+    device/samsung/jf-common/bluetooth/bcm4335_prepatch.hcd:system/vendor/firmware/bcm4335_prepatch.hcd
+
+# Wifi
+PRODUCT_PACKAGES += \
+    macloader
+
+PRODUCT_COPY_FILES += \
+    device/samsung/jf-common/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
+    device/samsung/jf-common/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
+
 # Inherit from jf-common
 $(call inherit-product, device/samsung/jf-common/jf-common.mk)
+
